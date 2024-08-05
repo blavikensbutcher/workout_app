@@ -1,6 +1,5 @@
-import { ScrollView } from "react-native";
-import { WorkoutsListItem } from "./WorkoutListItem/WorkoutListItem";
-import { ProfileBtn } from "@/components/ProfileBtn/ProfileBtn";
+import { View, Text, SafeAreaView } from "react-native";
+
 
 const TRAINING_DATA: Exercise[] = [
   {
@@ -126,13 +125,10 @@ const TRAINING_DATA: Exercise[] = [
   },
 ];
 
-export const WorkoutsList = () => {
+export const InsideExercisePage = () => {
   return (
-    <ScrollView>
-      <ProfileBtn onPress={() => alert("Adding Exercise")}>Add Exercise</ProfileBtn>
-      {TRAINING_DATA.map((exercise) => (
-        <WorkoutsListItem key={exercise.name} name={exercise.name} workoutList={exercise.exercisesList} />
-      ))}
-    </ScrollView>
+    <SafeAreaView className="bg-gray-800 h-full">
+      <Text>Inside training</Text>
+    </SafeAreaView>
   );
 };

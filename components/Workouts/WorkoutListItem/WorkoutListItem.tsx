@@ -1,22 +1,28 @@
 import { View, Text, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
 
 interface Props {
   name: string,
   workoutList: ExerciseList[]
 }
 
-export const WorkoutsListItem = ({ name: workoutName } : Props) => {
+export const WorkoutsListItem = ({ name: workoutName, workoutList } : Props) => {
+
+  const navigation = useNavigation()
+
   const greenStyle = "text-green-400 text-xs";
 
   const isWithWeight = false;
   const reps = 30;
   const date = "Today, 13.56";
 
+
   return (
     <Pressable
       onLongPress={() => alert("drag")}
-      onPress={() => alert("Open training")}
+      // @ts-ignore
+      onPress={() => navigation.navigate("InsideExercise")}
     >
       <View className="flex flex-row bg-gray-900 m-2 p-4 rounded-3xl relative">
         <View className="bg-gray-200 flex-row p-1.5 w-12 h-12 justify-center content-center rounded-xl mr-4">

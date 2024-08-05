@@ -1,9 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import Settings from "./SettingsNavigationTab";
-import Profile from "./ProfileNavigationTab";
-import Training from "./TrainingNavigationTab";
+import Settings from "../SettingsMainTab/SettingsMainTab";
+import Profile from "../ProfileMainTab/ProfileMainTab";
+import { TrainingStackScreen } from "@/components/TrainingMainTab/TrainingMainTab";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,19 +28,22 @@ export const TabNavigation = () => {
         component={Profile}
         options={{
           tabBarIcon: ({ color, size }) => (
+
             <Ionicons name="person-outline" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Training"
-        component={Training}
+        name="Workout"
+        component={TrainingStackScreen}
         options={{
-          tabBarLabel: "Training",
+          tabBarLabel: "Workouts",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="barbell-outline" color={color} size={size} />
           ),
+
         }}
+
       />
       <Tab.Screen
         name="Settings"

@@ -3,9 +3,9 @@ import { Profile } from "../Profile/Profile";
 import { LinearGradient } from "expo-linear-gradient";
 import { CustomCalendar } from "../Calendar/Calendar";
 import { TodayTrainingsList } from "../TodayTrainingsList/TodayTrainingsList";
-import { ProfileButtonList } from "../ProfileButtonList/ProfileButtonList";
+import { ProfileBtn } from "@/components/ProfileBtn/ProfileBtn";
 
-export default function ProfileNavigationTab() {
+export default function ProfileMainTab() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView className="h-full flex gap-y-7 bg-white">
@@ -15,7 +15,7 @@ export default function ProfileNavigationTab() {
           </View>
 
           <View>
-            <ProfileButtonList />
+            <ProfileBtn onPress={() => alert("You premium user now")}>Premium +</ProfileBtn>
           </View>
 
           <View className="m-2">
