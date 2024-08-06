@@ -10,26 +10,35 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useNavigation } from "@react-navigation/core";
+import { signUp } from "@/config/firebase";
+import Toast from "react-native-toast-message";
+
 
 interface Props {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+  setIsRegisterPressed: Dispatch<SetStateAction<boolean>>;
 }
 
-export const RegisterPage = ({ setIsLoggedIn }: Props) => {
+export const RegisterPage = ({
+  setIsLoggedIn,
+  setIsRegisterPressed,
+}: Props) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
+  const navigation = useNavigation();
 
   return (
     <>
-      <View className="flex flex-row-reverse justify-center content-baseline gap-x-2 absolute top-72 left-24 absolute z-10">
+      <View className="flex flex-row-reverse justify-center content-baseline gap-x-2 top-56 left-24 absolute z-10">
         <View className="rotate-90">
           <Ionicons name={"barbell-outline"} size={45} color={"red"}></Ionicons>
         </View>
         <Text className="text-2xl top-2 font-bold text-white">BB Gym App</Text>
       </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex content-center justify-center align-middle absolute z-1 top-48 left-1 w-96 h-3/4 rounded-3xl bg-black p-7 gap-y-2">
+        <View className="flex justify-center align-middle absolute z-1 top-20 left-1 w-96 h-full rounded-3xl bg-black p-7 gap-y-2">
           <KeyboardAvoidingView
             behavior={Platform.OS == "ios" ? "padding" : "height"}
             className="gap-6"
@@ -58,19 +67,32 @@ export const RegisterPage = ({ setIsLoggedIn }: Props) => {
               secureTextEntry={true}
             />
 
-            <View className="pl-3 gap-x-8 gap-y-4">
-              <View className="bg-transparent rounded-xl w-64 border-white border-2">
-                <Button
-                  color={"white"}
-                  title="Register"
-                  onPress={() => {
-                    alert(
-                      `Registered Mail: ${email} Password: ${password} R: ${repeatPassword}`,
-                    );
-                    setIsLoggedIn(true);
-                  }}
-                />
-              </View>
+            <View className="h-10">
+              <Button
+                title="back to login page"
+                onPress={() => {
+                  setIsRegisterPressed(false);
+                }}
+              />
+            </View>
+
+            <View className="bg-black rounded-xl border-white border-2">
+              <Button
+                color={"white"}
+                title="Register"
+                onPress={() => {
+                  if (password === repeatPassword) {
+                    signUp(String(email), String(password))
+                  } else {
+                    Toast.show({
+                      type: "error",
+                      text1: "Error",
+                      text2: "Passwords must match",
+                      position: "bottom",
+                      keyboardOffset: -280
+                    })
+                }}}
+              />
             </View>
           </KeyboardAvoidingView>
         </View>

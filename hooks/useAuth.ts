@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { onAuthStateChanged } from "@firebase/auth";
-import { auth } from "@/config/config";
+import { auth } from "@/config/firebase";
 
 export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -23,6 +23,7 @@ export const useAuth = () => {
   const values = {
     user,
     isLoggedIn,
+    setIsLoggedIn,
   };
 
   return useMemo(() => values, [values]);

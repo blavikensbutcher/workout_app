@@ -13,6 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 import { RegisterPage } from "@/components/RegisterPage/RegisterPage";
 import { Modal, PaperProvider, Portal } from "react-native-paper";
+import { login } from "@/config/firebase";
 
 interface Props {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
@@ -26,14 +27,14 @@ export const AuthPage = ({ setIsLoggedIn, setIsRegisterPressed }: Props) => {
 
   return (
     <>
-      <View className="flex flex-row-reverse justify-center content-baseline gap-x-2 absolute top-72 left-24 absolute z-10">
+      <View className="flex flex-row-reverse justify-center content-baseline gap-x-2 top-56 left-24 absolute z-10">
         <View className="rotate-90">
           <Ionicons name={"barbell-outline"} size={45} color={"red"}></Ionicons>
         </View>
         <Text className="text-2xl top-2 font-bold text-white">BB Gym App</Text>
       </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex content-center justify-center align-middle absolute z-1 top-48 left-1 w-96 h-3/4 rounded-3xl bg-black p-7 gap-y-2">
+        <View className="flex content-center justify-center align-middle absolute z-1 top-20 left-1 w-96 h-full rounded-3xl bg-black p-7 gap-y-2">
           <KeyboardAvoidingView
             behavior={Platform.OS == "ios" ? "padding" : "height"}
             className="gap-6"
@@ -59,7 +60,11 @@ export const AuthPage = ({ setIsLoggedIn, setIsRegisterPressed }: Props) => {
                 <Button
                   color={"white"}
                   title="Login"
-                  onPress={() => alert(email + " " + password)}
+                  onPress={() => {
+                    login(email, password)
+                      .then((item) => console.log(item))
+                      .catch((error) => console.log(error));
+                  }}
                 />
               </View>
               <View className="bg-transparent rounded-xl w-64 border-white border-2">

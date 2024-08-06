@@ -1,6 +1,11 @@
 import { View, Image, Text } from "react-native";
+import { useAuth } from "@/hooks/useAuth";
+import { updateUserProfile } from "@/config/firebase";
 
 export const Profile = () => {
+
+  const user = useAuth()
+
   return (
     <View className="flex flex-row w-full justify-around content-around p-2">
       <Image
@@ -12,7 +17,7 @@ export const Profile = () => {
 
       <View className="flex gap-y-4">
         <View>
-          <Text className="text-xl">Vladimyr</Text>
+          <Text className="text-base">{user.user.displayName}</Text>
           <Text className="text-xs border-solid text-gray-500">
             Goal: Building muscles
           </Text>
