@@ -43,3 +43,14 @@ D
 babel.config.js,7/7/775bd43a34022cef87b6af825cbd551f29473f73
 C
 nativewind-env.d.ts,8/2/82c9cf64746e5cca265ddf859b873da7466f1043
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+d
+4components/TodayTrainingsList/TodayTrainingsList.tsx,7/d/7dfd7614f4b223a46012563f585a90f5bda742e3
+G
+hooks/useColorScheme.ts,0/f/0fb1f6509538b264e1500e0451f62b1d51c9afdb
+T
+$hooks/Exercises/useAddNewExercise.ts,6/c/6cfa472c230427a3ddb58ae4216665401ab03e90
+;
+.prettierrc,2/0/20137a9e94744624390b6748bc96df5ca1579b71

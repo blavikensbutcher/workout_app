@@ -1,7 +1,10 @@
 interface Exercise {
   name: string;
-  totalWeightInKg: number;
-  exercisesList: ExerciseList[];
+  totalWeightForTheMonthInKg?: number;
+  totalRepsForTheMonth?: number;
+  lastTrainingSession?: Date;
+  isWithWeight: boolean;
+  exercisesList?: ExerciseList[];
 }
 
 interface ExerciseList {

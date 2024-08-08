@@ -1,40 +1,42 @@
-import { ScrollView } from "react-native";
-import { WorkoutsListItem } from "./WorkoutListItem/WorkoutListItem";
-import { ProfileBtn } from "@/components/ProfileBtn/ProfileBtn";
+import { ScrollView } from 'react-native';
+import { WorkoutsListItem } from './WorkoutListItem/WorkoutListItem';
+import { ProfileBtn } from '@/components/ProfileBtn/ProfileBtn';
+import { useAuth } from '@/hooks/useAuth';
+import { useAddNewExercise } from '@/hooks/Exercises/useAddNewExercise';
 
-const TRAINING_DATA: Exercise[] = [
+const TRAINING_DATA = [
   {
-    name: "Dips",
+    name: 'Dips',
     totalWeightInKg: 1000,
     exercisesList: [
       {
         reps: 0,
-        createdAt: "",
+        createdAt: '',
       },
       {
         reps: 0,
-        createdAt: "",
+        createdAt: '',
       },
       {
         reps: 0,
-        createdAt: "",
+        createdAt: '',
       },
       {
         reps: 0,
-        createdAt: "",
+        createdAt: '',
       },
       {
         reps: 0,
-        createdAt: "",
+        createdAt: '',
       },
       {
         reps: 0,
-        createdAt: "",
+        createdAt: '',
       },
     ],
   },
   {
-    name: "Pullups",
+    name: 'Pullups',
     totalWeightInKg: 0,
     exercisesList: [
       {
@@ -64,7 +66,7 @@ const TRAINING_DATA: Exercise[] = [
     ],
   },
   {
-    name: "Squats",
+    name: 'Squats',
     totalWeightInKg: 0,
     exercisesList: [
       {
@@ -94,7 +96,7 @@ const TRAINING_DATA: Exercise[] = [
     ],
   },
   {
-    name: "Bench Press",
+    name: 'Bench Press',
     totalWeightInKg: 10000,
     exercisesList: [
       {
@@ -127,11 +129,24 @@ const TRAINING_DATA: Exercise[] = [
 ];
 
 export const WorkoutsList = () => {
+  const user = useAuth().user;
+
+  const exercise = {
+    name: 'pushups',
+    isWithWeight: false,
+  };
+
   return (
     <ScrollView>
-      <ProfileBtn onPress={() => alert("Adding Exercise")}>Add Exercise</ProfileBtn>
+      <ProfileBtn onPress={() => useAddNewExercise({ exercise, userId: user?.uid })}>
+        New Exercise
+      </ProfileBtn>
       {TRAINING_DATA.map((exercise) => (
-        <WorkoutsListItem key={exercise.name} name={exercise.name} workoutList={exercise.exercisesList} />
+        <WorkoutsListItem
+          key={exercise.name}
+          name={exercise.name}
+          workoutList={exercise.exercisesList}
+        />
       ))}
     </ScrollView>
   );

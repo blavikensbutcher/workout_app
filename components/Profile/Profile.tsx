@@ -1,7 +1,5 @@
 import { View, Image, Text } from "react-native";
 import { useAuth } from "@/hooks/useAuth";
-import { db } from "@/config/firebase";
-import { addDoc, collection, getDocs } from "@firebase/firestore";
 
 export const Profile = () => {
 
