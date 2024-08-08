@@ -1,23 +1,26 @@
 import { View, Image, Text } from "react-native";
 import { useAuth } from "@/hooks/useAuth";
-import { updateUserProfile } from "@/config/firebase";
+import { db } from "@/config/firebase";
+import { addDoc, collection, getDocs } from "@firebase/firestore";
 
 export const Profile = () => {
 
-  const user = useAuth()
+  const auth = useAuth()
+  const user = auth.user
+
 
   return (
     <View className="flex flex-row w-full justify-around content-around p-2">
       <Image
         source={{
-          uri: "https://avatars.githubusercontent.com/u/119450554?v=4",
+          uri: `${user?.photoURL}`,
         }}
         style={{ width: 125, height: 125, borderRadius: 20 }}
       />
 
       <View className="flex gap-y-4">
         <View>
-          <Text className="text-base">{user.user.displayName}</Text>
+          <Text className="text-xl">{user?.displayName || user?.email}</Text>
           <Text className="text-xs border-solid text-gray-500">
             Goal: Building muscles
           </Text>

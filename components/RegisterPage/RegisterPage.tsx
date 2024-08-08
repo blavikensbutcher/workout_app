@@ -16,12 +16,10 @@ import Toast from "react-native-toast-message";
 
 
 interface Props {
-  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
   setIsRegisterPressed: Dispatch<SetStateAction<boolean>>;
 }
 
 export const RegisterPage = ({
-  setIsLoggedIn,
   setIsRegisterPressed,
 }: Props) => {
   const [email, setEmail] = useState<string>("");
@@ -80,9 +78,9 @@ export const RegisterPage = ({
               <Button
                 color={"white"}
                 title="Register"
-                onPress={() => {
+                onPress={async () => {
                   if (password === repeatPassword) {
-                    signUp(String(email), String(password))
+                    await signUp(String(email), String(password))
                   } else {
                     Toast.show({
                       type: "error",
@@ -91,7 +89,9 @@ export const RegisterPage = ({
                       position: "bottom",
                       keyboardOffset: -280
                     })
-                }}}
+                }
+                setIsRegisterPressed(false)
+                }}
               />
             </View>
           </KeyboardAvoidingView>

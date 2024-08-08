@@ -6,14 +6,12 @@ import { useAuth } from "@/hooks/useAuth";
 
 export const App = () => {
   const {isLoggedIn,setIsLoggedIn, user} = useAuth()
-
   const [isRegisterPressed, setIsRegisterPressed] = useState<boolean>(false);
 
   return isLoggedIn ? (
     <TabNavigation />
   ) : isRegisterPressed ? (
     <RegisterPage
-      setIsLoggedIn={setIsLoggedIn}
       setIsRegisterPressed={setIsRegisterPressed}
     />
   ) : (

@@ -1,19 +1,22 @@
 import { useEffect, useMemo, useState } from "react";
 import { onAuthStateChanged } from "@firebase/auth";
+import { User } from "firebase/auth";
 import { auth } from "@/config/firebase";
 
 export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [user, setUser] = useState<object | null>({});
+  const [user, setUser] = useState<User>();
+
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        setIsLoggedIn(true);
+
+        if (user.emailVerified) setIsLoggedIn(true);
       } else {
         setIsLoggedIn(false);
-        setUser({});
+        setUser(undefined);
       }
     });
 

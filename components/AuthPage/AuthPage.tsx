@@ -8,11 +8,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/core";
-import { RegisterPage } from "@/components/RegisterPage/RegisterPage";
-import { Modal, PaperProvider, Portal } from "react-native-paper";
+
 import { login } from "@/config/firebase";
 
 interface Props {
@@ -20,7 +18,7 @@ interface Props {
   setIsRegisterPressed: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AuthPage = ({ setIsLoggedIn, setIsRegisterPressed }: Props) => {
+export const AuthPage: FC<Props> = ({ setIsLoggedIn, setIsRegisterPressed }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
@@ -60,10 +58,8 @@ export const AuthPage = ({ setIsLoggedIn, setIsRegisterPressed }: Props) => {
                 <Button
                   color={"white"}
                   title="Login"
-                  onPress={() => {
-                    login(email, password)
-                      .then((item) => console.log(item))
-                      .catch((error) => console.log(error));
+                  onPress={async () => {
+                    await login(email, password);
                   }}
                 />
               </View>
