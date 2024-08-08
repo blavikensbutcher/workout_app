@@ -1,8 +1,8 @@
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { WorkoutsListItem } from './WorkoutListItem/WorkoutListItem';
 import { ProfileBtn } from '@/components/ProfileBtn/ProfileBtn';
 import { useAuth } from '@/hooks/useAuth';
-import { useAddNewExercise } from '@/hooks/Exercises/useAddNewExercise';
+import { useGetUserExercises } from '@/hooks/Exercises/useGetUserExercises';
 
 const TRAINING_DATA = [
   {
@@ -131,23 +131,19 @@ const TRAINING_DATA = [
 export const WorkoutsList = () => {
   const user = useAuth().user;
 
-  const exercise = {
-    name: 'pushups',
-    isWithWeight: false,
-  };
+  const exercises = useGetUserExercises(user);
 
   return (
     <ScrollView>
-      <ProfileBtn onPress={() => useAddNewExercise({ exercise, userId: user?.uid })}>
-        New Exercise
-      </ProfileBtn>
-      {TRAINING_DATA.map((exercise) => (
-        <WorkoutsListItem
-          key={exercise.name}
-          name={exercise.name}
-          workoutList={exercise.exercisesList}
-        />
-      ))}
+      <ProfileBtn onPress={() => console.log(user?.uid)}>New Exercise</ProfileBtn>
+      {<Text>Loading....</Text> &&
+        exercises.map((exercise) => (
+          <WorkoutsListItem
+            key={exercise.name}
+            name={exercise.name}
+            exerciseList={exercise.exercisesList}
+          />
+        ))}
     </ScrollView>
   );
 };

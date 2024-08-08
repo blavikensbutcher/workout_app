@@ -1,28 +1,26 @@
-import { View, Text, Pressable } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/core";
+import { View, Text, Pressable } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 
 interface Props {
-  name: string,
-  workoutList: ExerciseList[]
+  name: string;
+  exerciseList: ExerciseList[] | undefined;
 }
 
-export const WorkoutsListItem = ({ name: workoutName, workoutList } : Props) => {
+export const WorkoutsListItem = ({ name: workoutName, exerciseList }: Props) => {
+  const navigation = useNavigation();
 
-  const navigation = useNavigation()
-
-  const greenStyle = "text-green-400 text-xs";
+  const greenStyle = 'text-green-400 text-xs';
 
   const isWithWeight = false;
   const reps = 30;
-  const date = "Today, 13.56";
-
+  const date = 'Today, 13.56';
 
   return (
     <Pressable
-      onLongPress={() => alert("drag")}
+      onLongPress={() => alert('drag')}
       // @ts-ignore
-      onPress={() => navigation.navigate("InsideExercise")}
+      onPress={() => navigation.navigate('InsideExercise')}
     >
       <View className="flex flex-row bg-gray-900 m-2 p-4 rounded-3xl relative">
         <View className="bg-gray-200 flex-row p-1.5 w-12 h-12 justify-center content-center rounded-xl mr-4">
@@ -42,13 +40,9 @@ export const WorkoutsListItem = ({ name: workoutName, workoutList } : Props) => 
         </View>
         <Pressable
           className="absolute top-5 right-5 w-10 h-10 p-2 justify-center content-center"
-          onPress={() => alert("Pressed options")}
+          onPress={() => alert('Pressed options')}
         >
-          <Ionicons
-            name="ellipsis-horizontal-outline"
-            color={"white"}
-            size={25}
-          />
+          <Ionicons name="ellipsis-horizontal-outline" color={'white'} size={25} />
         </Pressable>
       </View>
     </Pressable>

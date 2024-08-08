@@ -3,7 +3,7 @@ interface Exercise {
   totalWeightForTheMonthInKg?: number;
   totalRepsForTheMonth?: number;
   lastTrainingSession?: Date;
-  isWithWeight: boolean;
+  isWithWeight?: boolean;
   exercisesList?: ExerciseList[];
 }
 

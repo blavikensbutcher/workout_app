@@ -54,3 +54,5 @@ T
 $hooks/Exercises/useAddNewExercise.ts,6/c/6cfa472c230427a3ddb58ae4216665401ab03e90
 ;
 .prettierrc,2/0/20137a9e94744624390b6748bc96df5ca1579b71
+V
+&hooks/Exercises/useGetUserExercises.ts,5/d/5d6d8bf7f371abab74188d96fd09caa211b31e56
