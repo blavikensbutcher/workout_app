@@ -3,11 +3,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 
 interface Props {
+  id: string | undefined;
   name: string;
   exerciseList: ExerciseList[] | undefined;
 }
 
-export const WorkoutsListItem = ({ name: workoutName, exerciseList }: Props) => {
+export const WorkoutsListItem = ({ name: workoutName, id, exerciseList }: Props) => {
   const navigation = useNavigation();
 
   const greenStyle = 'text-green-400 text-xs';

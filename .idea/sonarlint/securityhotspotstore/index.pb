@@ -56,3 +56,7 @@ $hooks/Exercises/useAddNewExercise.ts,6/c/6cfa472c230427a3ddb58ae4216665401ab03
 .prettierrc,2/0/20137a9e94744624390b6748bc96df5ca1579b71
 V
 &hooks/Exercises/useGetUserExercises.ts,5/d/5d6d8bf7f371abab74188d96fd09caa211b31e56
+J
+components/Modal/Modal.tsx,8/c/8c3656a6b079523545a839087870e9ddb405134c
+R
+"components/OpenModal/OpenModal.tsx,3/2/326ed07ad5e61402e54fb0f58f1aad1639fa80b2

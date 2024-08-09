@@ -1,149 +1,58 @@
-import { ScrollView, Text } from 'react-native';
+import { Button, Pressable, ScrollView, Switch, Text, TextInput, View } from 'react-native';
 import { WorkoutsListItem } from './WorkoutListItem/WorkoutListItem';
 import { ProfileBtn } from '@/components/ProfileBtn/ProfileBtn';
 import { useAuth } from '@/hooks/useAuth';
 import { useGetUserExercises } from '@/hooks/Exercises/useGetUserExercises';
-
-const TRAINING_DATA = [
-  {
-    name: 'Dips',
-    totalWeightInKg: 1000,
-    exercisesList: [
-      {
-        reps: 0,
-        createdAt: '',
-      },
-      {
-        reps: 0,
-        createdAt: '',
-      },
-      {
-        reps: 0,
-        createdAt: '',
-      },
-      {
-        reps: 0,
-        createdAt: '',
-      },
-      {
-        reps: 0,
-        createdAt: '',
-      },
-      {
-        reps: 0,
-        createdAt: '',
-      },
-    ],
-  },
-  {
-    name: 'Pullups',
-    totalWeightInKg: 0,
-    exercisesList: [
-      {
-        reps: 11,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 20,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 30,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 15,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 12,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 11,
-        createdAt: Date.now().toString(),
-      },
-    ],
-  },
-  {
-    name: 'Squats',
-    totalWeightInKg: 0,
-    exercisesList: [
-      {
-        reps: 11,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 20,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 30,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 15,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 12,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 11,
-        createdAt: Date.now().toString(),
-      },
-    ],
-  },
-  {
-    name: 'Bench Press',
-    totalWeightInKg: 10000,
-    exercisesList: [
-      {
-        reps: 11,
-        weight: 30,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 12,
-        weight: 30,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 21,
-        weight: 380,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 15,
-        weight: 50,
-        createdAt: Date.now().toString(),
-      },
-      {
-        reps: 11,
-        weight: 30,
-        createdAt: Date.now().toString(),
-      },
-    ],
-  },
-];
+import { OpenModal } from '@/components/OpenModal/OpenModal';
+import { useState } from 'react';
 
 export const WorkoutsList = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWithWeight, setIsWithWeight] = useState(false);
+  const [exerciseName, setExerciseName] = useState('');
+
   const user = useAuth().user;
 
   const exercises = useGetUserExercises(user);
 
   return (
     <ScrollView>
-      <ProfileBtn onPress={() => console.log(user?.uid)}>New Exercise</ProfileBtn>
+      <ProfileBtn onPress={() => setIsModalOpen(true)}>New Exercise</ProfileBtn>
       {<Text>Loading....</Text> &&
         exercises.map((exercise) => (
           <WorkoutsListItem
+            id={exercise.id}
             key={exercise.name}
             name={exercise.name}
             exerciseList={exercise.exercisesList}
           />
         ))}
+
+      <OpenModal isModalOpen={isModalOpen}>
+        <View className="top-64 h-72 bg-gray-800 rounded-2xl">
+          <TextInput
+            value={exerciseName}
+            autoCapitalize={'sentences'}
+            className="ml-10 mt-10 bg-white w-3/4 h-10 rounded-xl border-0.5 border-black pl-4 text-black focus:border-2 focus:border-cyan-400"
+            placeholder="Exercise name:"
+            placeholderTextColor={'gray'}
+            onChangeText={setExerciseName}
+          />
+
+          <View className="flex flex-row justify-center gap-x-4">
+            <Text className="text-white text-base mt-1">Exercise with weight</Text>
+            <Switch onChange={() => setIsWithWeight(!isWithWeight)} value={isWithWeight} />
+          </View>
+
+          <View className="absolute right-1/3 bottom-0">
+            <Button title="Create exercise" color="white" onPress={() => setIsModalOpen(false)} />
+          </View>
+
+          <View className="absolute right-0 -top-8">
+            <Button title="Close" color="white" onPress={() => setIsModalOpen(false)} />
+          </View>
+        </View>
+      </OpenModal>
     </ScrollView>
   );
 };
