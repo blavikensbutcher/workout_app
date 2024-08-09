@@ -1,9 +1,9 @@
-interface Exercise {
+export interface Exercise {
   id: string;
   name: string;
   totalWeightForTheMonthInKg?: number;
   totalRepsForTheMonth?: number;
-  lastTrainingSession?: Date;
+  lastTrainingSession?: LastTrainingSession;
   isWithWeight?: boolean;
   exercisesList?: ExerciseList[];
 }
@@ -13,4 +13,9 @@ interface ExerciseList {
   weight?: number;
   timeInSeconds?: number;
   createdAt: string;
+}
+
+export interface LastTrainingSession {
+  seconds: number;
+  nanoseconds: number;
 }

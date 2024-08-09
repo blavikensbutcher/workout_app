@@ -1,9 +1,11 @@
-interface Props {
-  seconds: number;
-  nanoseconds: number;
-}
+import { LastTrainingSession } from '@/types/TrainingSession/training.types';
 
-export function formatTimestamp({ seconds, nanoseconds }: Props): string {
+export function formatTimestamp(lastTrainingSession: LastTrainingSession): string {
+  if (!lastTrainingSession) {
+    return 'Invalid timestamp';
+  }
+
+  const { seconds, nanoseconds } = lastTrainingSession;
   const date = new Date(seconds * 1000);
   const now = new Date();
 

@@ -2,6 +2,7 @@ import { View, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import { formatTimestamp } from '@/helpers/formatTimeStamp';
+import { Exercise } from '@/types/TrainingSession/training.types';
 
 interface Props {
   exercise: Exercise;
@@ -11,9 +12,6 @@ export const WorkoutsListItem = ({ exercise }: Props) => {
   const navigation = useNavigation();
 
   const greenStyle = 'text-green-400 text-xs';
-
-  const reps = 30;
-  const date = 'Today, 13.56';
 
   return (
     <Pressable
@@ -37,7 +35,7 @@ export const WorkoutsListItem = ({ exercise }: Props) => {
           </View>
           <View>
             <Text className="text-white text-sm">
-              {formatTimestamp(exercise.lastTrainingSession)}
+              {formatTimestamp(exercise.lastTrainingSession) || 'No data'}
             </Text>
           </View>
         </View>
