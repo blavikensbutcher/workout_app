@@ -9,6 +9,7 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { User } from 'firebase/auth';
+import { Exercise } from '@/types/TrainingSession/training.types';
 
 export const useGetUserExercises = (user: User | undefined): Exercise[] => {
   const [exercises, setExercises] = useState<any[]>([]);

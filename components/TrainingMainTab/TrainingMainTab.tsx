@@ -1,8 +1,9 @@
-import { SafeAreaView } from "react-native";
-import { WorkoutsList } from "../Workouts/WorkoutsList";
-import { InsideExercisePage } from "@/components/Workouts/InsideExercise/InsideExercisePage";
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { SafeAreaView } from 'react-native';
+import { WorkoutsList } from '../Workouts/WorkoutsList';
+import { InsideExercisePage } from '@/components/Workouts/InsideExercise/InsideExercisePage';
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const TrainingStack = createNativeStackNavigator();
 
@@ -14,19 +15,17 @@ export function TrainingStackScreen() {
         options={{ headerShown: false }}
         component={TrainingMainTab}
       />
-      <TrainingStack.Screen
-        name={'InsideExercise'}
-        options={{}}
-        component={InsideExercisePage}
-      />
+      <TrainingStack.Screen name={'InsideExercise'} options={{}} component={InsideExercisePage} />
     </TrainingStack.Navigator>
   );
 }
 
 export default function TrainingMainTab() {
   return (
-    <SafeAreaView className="bg-gray-800 h-full">
-      <WorkoutsList />
-    </SafeAreaView>
+    <LinearGradient colors={['darkslategray', 'olivedrab']}>
+      <SafeAreaView className="bg-transparent h-full">
+        <WorkoutsList />
+      </SafeAreaView>
+    </LinearGradient>
   );
 }

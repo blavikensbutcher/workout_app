@@ -1,5 +1,6 @@
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/config/firebase';
+import { Exercise } from '@/types/TrainingSession/training.types';
 
 interface Props {
   exercise: Exercise;
