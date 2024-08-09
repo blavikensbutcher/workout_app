@@ -1,6 +1,6 @@
 import { LastTrainingSession } from '@/types/TrainingSession/training.types';
 
-export function formatTimestamp(lastTrainingSession: LastTrainingSession): string {
+export function formatTimestamp(lastTrainingSession: LastTrainingSession | undefined): string {
   if (!lastTrainingSession) {
     return 'Invalid timestamp';
   }

@@ -35,7 +35,7 @@ export const WorkoutsListItem = ({ exercise }: Props) => {
           </View>
           <View>
             <Text className="text-white text-sm">
-              {formatTimestamp(exercise.lastTrainingSession) || 'No data'}
+              {formatTimestamp(exercise.lastTrainingSession) || 'Something went wrong'}
             </Text>
           </View>
         </View>
