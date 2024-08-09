@@ -19,14 +19,7 @@ export const WorkoutsList = () => {
     <ScrollView>
       <ProfileBtn onPress={() => setIsModalOpen(true)}>New Exercise</ProfileBtn>
       {<Text>Loading....</Text> &&
-        exercises.map((exercise) => (
-          <WorkoutsListItem
-            id={exercise.id}
-            key={exercise.name}
-            name={exercise.name}
-            exerciseList={exercise.exercisesList}
-          />
-        ))}
+        exercises.map((exercise) => <WorkoutsListItem key={exercise.id} exercise={exercise} />)}
 
       <OpenModal isModalOpen={isModalOpen}>
         <View className="top-64 h-72 bg-gray-800 rounded-2xl">

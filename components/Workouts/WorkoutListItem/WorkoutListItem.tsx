@@ -1,19 +1,17 @@
 import { View, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
+import { formatTimestamp } from '@/helpers/formatTimeStamp';
 
 interface Props {
-  id: string | undefined;
-  name: string;
-  exerciseList: ExerciseList[] | undefined;
+  exercise: Exercise;
 }
 
-export const WorkoutsListItem = ({ name: workoutName, id, exerciseList }: Props) => {
+export const WorkoutsListItem = ({ exercise }: Props) => {
   const navigation = useNavigation();
 
   const greenStyle = 'text-green-400 text-xs';
 
-  const isWithWeight = false;
   const reps = 30;
   const date = 'Today, 13.56';
 
@@ -29,14 +27,18 @@ export const WorkoutsListItem = ({ name: workoutName, id, exerciseList }: Props)
         </View>
         <View className="flex-col flex">
           <View className="flex-row gap-x-2">
-            <Text className="text-white text-xl">{workoutName}:</Text>
+            <Text className="text-white text-xl">{exercise.name}:</Text>
             <Text className="text-white text-base gap-2 mt-0.5">
-              {isWithWeight ? `${reps}kg` : reps}
+              {exercise.isWithWeight
+                ? `${exercise.totalWeightForTheMonthInKg}kg`
+                : String(exercise.totalRepsForTheMonth)}
             </Text>
             <Text className={greenStyle}>+3.2%</Text>
           </View>
           <View>
-            <Text className="text-white text-sm">{date}</Text>
+            <Text className="text-white text-sm">
+              {formatTimestamp(exercise.lastTrainingSession)}
+            </Text>
           </View>
         </View>
         <Pressable
